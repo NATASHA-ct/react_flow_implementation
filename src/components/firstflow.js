@@ -18,17 +18,22 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import Textinput from './textinput';
 import Sidebar from './sidebar';
+import Basictextinput from './textinput';
 
  
 const initialNodes = [
-  { id: '1', position: { x: 150, y: 50 }, data: { label: <h2>Start Here</h2> } },
+  { id: '1', position: { x: 0, y: 50 }, data: { label: <h2>Start Here</h2> } },
   { id: '2', position: { x: 300, y: 200 }, data: { label: <h4>Process A</h4> } },
-  { id: '3', position: { x: 0, y: 200 }, data: { label: <h4>Process B</h4> } },
-  { id: '4', position: { x: 150, y: 400 }, data: { label: <h4>STOP</h4> } },
-  { id: '6', position: { x: 150, y: 600 }, data: { label: <h4>AUTHORISATION SUCCESSFUL</h4> } },
+  { id: '3', position: { x: 0, y: 300 }, data: { label: <h4>Process B</h4> } },
+  { id: '4', position: { x: 0, y: 600 }, data: { label: <h4>STOP</h4> } },
+  { id: '6', position: { x: 560, y: 600 }, data: { label: <h4>AUTHORISATION SUCCESSFUL</h4> } },
   { id: '5', 
-  position: { x: 150, y: 500 },
+  position: { x: 500, y: 350 },
   type:'textUpdater',
+ },
+ { id: '7', 
+  position: { x: 500, y: 350 },
+  type:'newText',
  },
 ];
 const initialEdges = [
@@ -39,7 +44,7 @@ const initialEdges = [
     { id: 'e1-6', source: '5', target: '6' },
 ];
 
-const nodeTypes = {textUpdater:Textinput};
+const nodeTypes = {textUpdater:Textinput, newText:Basictextinput};
 export default function Firstflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -52,17 +57,21 @@ export default function Firstflow() {
   const onConnect = useCallback(
    (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
-   
+
   );
 
 
   let id = 0;
-  const getId = () => `dndnode_${id++}`;
 
-const onDragOver = useCallback((event) => {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
-  }, []);
+
+    const getId = useCallback(() => {
+      return `dndnode_${id++}`;
+    }, [id]);
+
+    const onDragOver = useCallback((event) => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'move';
+      }, []);
 
   const onDrop = useCallback(
     (event) => {
@@ -88,7 +97,7 @@ const onDragOver = useCallback((event) => {
 
       setNodes((nds) => nds.concat(newNode));
     },
-    [reactFlowInstance],
+    [reactFlowInstance, setNodes, getId],
   );
 
   return (

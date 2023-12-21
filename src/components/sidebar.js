@@ -18,8 +18,8 @@ export default function Sidebar() {
       <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'output')} draggable>
         Output Node
       </div>
-      <div className="dndnode textinput" onDragStart={(event) => onDragStart(event, 'output')} draggable>
-        TextInput Node
+      <div className="dndnode textinput" onDragStart={(event) => onDragStart(event, 'newText')} draggable>
+        Text Input Node
       </div>
     </aside>
   );
