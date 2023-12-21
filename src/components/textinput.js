@@ -14,7 +14,7 @@ export default function Textinput() {
         <Handle  type='target'  positon ={Position.Top}/>
         <div >
             <h4>VERIFY YOUR NAME</h4>
-            <input type="text" name="" id="textA" onchange={onChange} style={{ height: '2em' , fontSize: '20px', padding:'2px' ,fontWeight: 'bold', background:'yellowgreen'}}/>
+            <input type="text" name="" id="textA" onChange={onChange} style={{ height: '2em' , fontSize: '20px', padding:'2px' ,fontWeight: 'bold', background:'yellowgreen'}}/>
         </div>
         <Handle type='source' position={Position.Bottom} />
    </>
