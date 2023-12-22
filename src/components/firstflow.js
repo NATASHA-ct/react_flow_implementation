@@ -18,7 +18,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import Textinput from './textinput';
 import Sidebar from './sidebar';
-import Basictextinput from './textinput';
+import Basictextinput from './basictexinput';
 
  
 const initialNodes = [
@@ -31,10 +31,10 @@ const initialNodes = [
   position: { x: 500, y: 350 },
   type:'textUpdater',
  },
- { id: '7', 
-  position: { x: 500, y: 350 },
-  type:'newText',
- },
+//  { id: '7', 
+//   position: { x: 500, y: 350 },
+//   type:'newText',
+//  },
 ];
 const initialEdges = [
     { id: 'e1-2', source: '1', target: '2' },
